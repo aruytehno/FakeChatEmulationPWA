@@ -27,7 +27,7 @@ function loadData() {
         const { messages } = JSON.parse(savedData);
         state.messages = messages;
     } else {
-        fetch('../data/dialogue.json')
+        fetch('data/dialogue.json')
             .then(res => res.json())
             .then(schedule => {
                 state.messages = schedule;
