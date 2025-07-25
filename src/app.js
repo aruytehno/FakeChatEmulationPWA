@@ -1,3 +1,9 @@
+// Добавьте в начало:
+function closeAdminPanel() {
+  document.getElementById('admin-panel').classList.add('hidden');
+  state.isAdminPanelOpen = false;
+}
+
 // Конфигурация приложения
 const CONFIG = {
     currentUser: { name: 'You' },
@@ -54,6 +60,14 @@ function setupEventListeners() {
 
     document.getElementById('send-msg').addEventListener('click', sendMessage);
     document.getElementById('add-participant').addEventListener('click', addParticipant);
+    document.getElementById('close-admin').addEventListener('click', closeAdminPanel);
+
+    // Закрытие при клике на фон
+    document.getElementById('admin-panel').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('admin-panel')) {
+      closeAdminPanel();
+    }
+  });
 }
 
 // Работа с сообщениями
@@ -116,12 +130,16 @@ function addParticipant() {
 // Админ-панель
 let longPressTimer = null;
 
+// Обновите startLongPress:
 function startLongPress() {
-    longPressTimer = setTimeout(() => {
-        state.isAdminPanelOpen = true;
-        document.getElementById('admin-panel').classList.remove('hidden');
-        populateAdminPanel();
-    }, 3000);
+  longPressTimer = setTimeout(() => {
+    state.isAdminPanelOpen = true;
+    const adminPanel = document.getElementById('admin-panel');
+    adminPanel.classList.remove('hidden');
+    setTimeout(() => adminPanel.classList.add('visible'), 10);
+    populateAdminPanel();
+    if (navigator.vibrate) navigator.vibrate(100); // Вибрация
+  }, 3000);
 }
 
 function cancelLongPress() {

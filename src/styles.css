@@ -198,3 +198,49 @@ html, body {
         padding-bottom: 40px;
     }
 }
+
+/* Кнопка закрытия */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Фикс для iPhone X и новее */
+@supports (padding: max(0px)) {
+  #chat-header {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: 12px;
+    height: calc(50px + env(safe-area-inset-top));
+  }
+
+  #messages {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Анимация открытия */
+#admin-panel.visible {
+  transform: translateY(0);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
