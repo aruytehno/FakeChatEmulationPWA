@@ -1,4 +1,23 @@
 [
-  { "timeOffsetSec": 2, "sender": "Alice", "type": "text", "content": "Привет!" },
-  { "timeOffsetSec": 6, "sender": "Bob",   "type": "text", "content": "Привет, как дела?" }
+  {
+    "timeOffsetSec": 2,
+    "sender": "Alice",
+    "type": "text",
+    "content": "Привет! Как съёмки?",
+    "simulateTyping": true
+  },
+  {
+    "timeOffsetSec": 6,
+    "sender": "Bob",
+    "type": "text",
+    "content": "Всё отлично! Костюм немного жмёт, но терпимо.",
+    "simulateTyping": true
+  },
+  {
+    "timeOffsetSec": 10,
+    "sender": "Alice",
+    "type": "text",
+    "content": "Скоро перерыв, потерпи ещё немного",
+    "simulateTyping": true
+  }
 ]
