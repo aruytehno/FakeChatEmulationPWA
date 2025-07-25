@@ -46,10 +46,11 @@ async function loadData() {
 
 // Сохранение данных
 function saveData() {
-    localStorage.setItem(
-        CONFIG.storageKey,
-        JSON.stringify({ messages: state.messages })
-    );
+    try {
+        localStorage.setItem(CONFIG.storageKey, JSON.stringify({messages: state.messages}));
+    } catch (e) {
+        console.error('LocalStorage error:', e);
+    }
 }
 
 // Отправка сообщения
