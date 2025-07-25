@@ -1,0 +1,4 @@
+[
+  { "timeOffsetSec": 2, "sender": "Alice", "type": "text", "content": "Привет!" },
+  { "timeOffsetSec": 6, "sender": "Bob",   "type": "text", "content": "Привет, как дела?" }
+]

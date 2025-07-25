@@ -1,0 +1,17 @@
+/* Общие сбросы */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { width: 100%; height: 100%; font-family: -apple-system, system-ui, sans-serif; }
+#chat-container { display: flex; flex-direction: column; height: 100vh; background: #e5ddd5; }
+#chat-header { padding: 12px; background: #075e54; color: #fff; display: flex; align-items: center; }
+#chat-name { font-weight: bold; }
+#chat-status { margin-left: 8px; font-size: 0.85rem; color: #c2c2c2; }
+#messages { flex: 1; overflow-y: auto; padding: 12px; }
+.message { max-width: 70%; margin-bottom: 8px; padding: 8px 12px; border-radius: 18px; position: relative; animation: fadeInUp 0.3s ease; }
+.incoming { background: #fff; align-self: flex-start; }
+.outgoing { background: #dcf8c6; align-self: flex-end; }
+#typing-indicator { padding: 8px 12px; font-style: italic; }
+.hidden { display: none; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/* Админ-панель */
+#admin-panel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 24px; overflow-y: auto; }
+#admin-panel button, #admin-panel input, #admin-panel select { margin: 8px 0; padding: 6px; }

@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>FakeChat для съёмок</title>
+  <link rel="stylesheet" href="../src/styles.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-
+  <div id="chat-container">
+    <header id="chat-header">
+      <div id="header-left">
+        <span id="chat-name">Имя</span>
+        <span id="chat-status">Online</span>
+      </div>
+    </header>
+    <div id="messages"></div>
+    <!-- Индикатор набора -->
+    <div id="typing-indicator" class="hidden">
+      <span id="typing-user"></span> печатает...
+    </div>
+  </div>
+  <!-- Админ-панель -->
+  <div id="admin-panel" class="hidden">
+    <h2>Админ-панель</h2>
+    <section>
+      <h3>Участники</h3>
+      <div id="participants"></div>
+      <button id="add-participant">Добавить участника</button>
+    </section>
+    <section>
+      <h3>Сообщения</h3>
+      <select id="msg-sender"></select>
+      <input type="text" id="msg-text" maxlength="50" placeholder="Сообщение" />
+      <button id="send-msg">Отправить</button>
+    </section>
+  </div>
+  <script src="../src/app.js"></script>
+  <script src="../src/admin.js"></script>
 </body>
 </html>
