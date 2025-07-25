@@ -6,46 +6,208 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#008069">
+    <meta name="theme-color" content="#3390ec">
     <title>FakeChat для съёмок</title>
     <link rel="stylesheet" href="src/styles.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
     <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
-
 </head>
 <body>
-    <div id="chat-container">
-        <header id="chat-header">
-            <div id="header-left">
-                <span id="chat-name">Диалог</span>
-                <span id="chat-status">Online</span>
+    <div id="app-container">
+        <!-- Боковая панель с чатами -->
+        <div id="sidebar" class="telegram-theme">
+            <div id="sidebar-header">
+                <button id="menu-toggle">☰</button>
+                <h2>Диалоги</h2>
+                <button id="new-chat">+</button>
             </div>
-        </header>
 
-        <div id="messages"></div>
-
-        <div id="typing-indicator" class="hidden">
-            <span id="typing-user"></span> печатает...
+            <div id="chat-list">
+                <div class="chat-item active">
+                    <div class="avatar-placeholder"></div>
+                    <div class="chat-info">
+                        <div class="chat-name">Основной чат</div>
+                        <div class="last-message">Привет! Как съемки?</div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="avatar-placeholder"></div>
+                    <div class="chat-info">
+                        <div class="chat-name">Анна и Борис</div>
+                        <div class="last-message">Где встретимся?</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div id="admin-panel" class="hidden">
-    <button id="close-admin" class="close-btn">×</button>
-        <h2>Админ-панель</h2>
+        <!-- Основное окно чата -->
+        <div id="chat-container" class="telegram-theme">
+            <header id="chat-header">
+                <div id="header-left">
+                    <button id="back-button">←</button>
+                    <div class="avatar-placeholder"></div>
+                    <div class="chat-info">
+                        <span id="chat-name">Основной чат</span>
+                        <span id="chat-status">Online</span>
+                    </div>
+                </div>
+                <div id="header-right">
+                    <button id="admin-toggle">⚙️</button>
+                </div>
+            </header>
 
-        <section>
-            <h3>Участники</h3>
-            <div id="participants"></div>
-            <button id="add-participant">Добавить участника</button>
-        </section>
+            <div id="messages">
+                <div class="message-date">Сегодня</div>
 
-        <section>
-            <h3>Сообщения</h3>
-            <select id="msg-sender"></select>
-            <input type="text" id="msg-text" maxlength="50" placeholder="Текст сообщения">
-            <button id="send-msg">Отправить</button>
-        </section>
+                <div class="message incoming">
+                    <div class="bubble">
+                        Привет! Готовы к съёмкам?
+                    </div>
+                    <div class="meta">
+                        <span class="time">10:30</span>
+                        <span class="status">✓✓</span>
+                    </div>
+                </div>
+
+                <div class="message outgoing">
+                    <div class="bubble">
+                        Да, уже на месте! Где реквизит?
+                    </div>
+                    <div class="meta">
+                        <span class="time">10:32</span>
+                        <span class="status">✓✓</span>
+                    </div>
+                </div>
+
+                <div class="message incoming">
+                    <div class="bubble">
+                        В гримёрке, второй стол. Можете взять что нужно 😊
+                    </div>
+                    <div class="meta">
+                        <span class="time">10:35</span>
+                        <span class="status">✓✓</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="typing-indicator" class="hidden">
+                <div class="typing-animation">
+                    <span></span><span></span><span></span>
+                </div>
+                <span id="typing-user"></span> печатает...
+            </div>
+
+            <div id="input-area">
+                <button id="attach-btn">📎</button>
+                <textarea id="message-input" placeholder="Введите сообщение..." maxlength="500"></textarea>
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+
+        <!-- Админ-панель -->
+        <div id="admin-panel" class="hidden">
+            <div class="admin-header">
+                <h2>Управление чатом</h2>
+                <button id="close-admin" class="close-btn">×</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab active" data-tab="participants">Участники</button>
+                <button class="tab" data-tab="messages">Сообщения</button>
+                <button class="tab" data-tab="settings">Настройки</button>
+            </div>
+
+            <div class="tab-content" id="participants-tab">
+                <h3>Участники чата</h3>
+                <div id="participants">
+                    <div class="participant">
+                        <div class="avatar-placeholder"></div>
+                        <div class="participant-info">
+                            <span class="name">Анна</span>
+                            <span class="status">Online</span>
+                        </div>
+                        <button class="edit-btn">✏️</button>
+                    </div>
+                    <div class="participant">
+                        <div class="avatar-placeholder"></div>
+                        <div class="participant-info">
+                            <span class="name">Борис</span>
+                            <span class="status">Был 5 мин назад</span>
+                        </div>
+                        <button class="edit-btn">✏️</button>
+                    </div>
+                </div>
+                <button id="add-participant" class="add-btn">+ Добавить участника</button>
+            </div>
+
+            <div class="tab-content hidden" id="messages-tab">
+                <h3>Управление сообщениями</h3>
+                <div class="form-group">
+                    <label for="msg-sender">Отправитель:</label>
+                    <select id="msg-sender">
+                        <option value="1">Анна</option>
+                        <option value="2">Борис</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="msg-text">Текст сообщения:</label>
+                    <textarea id="msg-text" placeholder="Введите текст сообщения..." maxlength="500"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="msg-time">Время отправки:</label>
+                    <select id="msg-time">
+                        <option value="now">Сейчас</option>
+                        <option value="5min">5 минут назад</option>
+                        <option value="1h">1 час назад</option>
+                        <option value="custom">Указать время</option>
+                    </select>
+                    <input type="datetime-local" id="custom-time" class="hidden">
+                </div>
+
+                <div class="button-group">
+                    <button id="send-msg" class="primary-btn">Добавить сообщение</button>
+                    <button id="clear-chat" class="secondary-btn">Очистить чат</button>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="settings-tab">
+                <h3>Настройки чата</h3>
+
+                <div class="form-group">
+                    <label>Тема оформления:</label>
+                    <div class="theme-selector">
+                        <div class="theme-option telegram active" data-theme="telegram"></div>
+                        <div class="theme-option whatsapp" data-theme="whatsapp"></div>
+                        <div class="theme-option imessage" data-theme="imessage"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="chat-name-input">Название чата:</label>
+                    <input type="text" id="chat-name-input" value="Основной чат">
+                </div>
+
+                <div class="form-group">
+                    <label>Дополнительные опции:</label>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="show-timestamps" checked>
+                        <label for="show-timestamps">Показывать время сообщений</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="show-status" checked>
+                        <label for="show-status">Показывать статусы участников</label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="save-settings" class="primary-btn">Сохранить настройки</button>
+                    <button id="export-chat" class="secondary-btn">Экспорт чата</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="src/app.js"></script>
